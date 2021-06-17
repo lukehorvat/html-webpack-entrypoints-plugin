@@ -27,7 +27,7 @@ module.exports = (fixture) => {
       filename: path.join('assets', '[name].js'),
     },
     optimization: {
-      runtimeChunk: 'single',
+      runtimeChunk: fixtureConfig.runtimeChunk,
     },
     plugins: [
       new HtmlWebpackPlugin(

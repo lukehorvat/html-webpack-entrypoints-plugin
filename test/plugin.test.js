@@ -27,8 +27,8 @@ it('should fail when only one entrypoint is configured', async () => {
   );
 });
 
-it('should succceed when multiple entrypoints are configured', async () => {
-  await runFixture('multiple-entrypoints');
+it('should succeed when multiple entrypoints and a single runtime chunk are configured', async () => {
+  await runFixture('multiple-entrypoints-and-single-runtime-chunk');
 });
 
 async function runFixture(fixture) {
