@@ -1,6 +1,4 @@
 const path = require('path');
-const fs = require('fs');
-const util = require('util');
 const compiler = require('./compiler');
 
 it('should fail when automatic injection is configured', async () => {
@@ -41,19 +39,18 @@ it('should succeed when multiple entrypoints and no runtime chunks are configure
 
 async function runFixture(fixture) {
   const stats = await compiler(fixture);
-  const webpackFs = stats.compilation.compiler.outputFileSystem;
-  const actualHtml = webpackFs.readFileSync(
+  const expectedHtml = stats.compilation.compiler.inputFileSystem.readFileSync(
+    path.join(stats.compilation.compiler.context, 'expected.html'),
+    'utf-8'
+  );
+  const actualHtml = stats.compilation.compiler.outputFileSystem.readFileSync(
     path.join(stats.compilation.compiler.outputPath, 'index.html'),
     'utf-8'
   );
-  const expectedHtml = await util.promisify(fs.readFile)(
-    path.join(__dirname, 'fixtures', fixture, 'expected.html'),
-    'utf-8'
-  );
 
-  expect(removeWhitespace(actualHtml)).toBe(removeWhitespace(expectedHtml));
+  expect(removeLineBreaks(actualHtml)).toBe(removeLineBreaks(expectedHtml));
 }
 
-function removeWhitespace(s) {
-  return s.replace(/\s/g, '');
+function removeLineBreaks(s) {
+  return s.replace(/\r?\n|\r/g, '');
 }

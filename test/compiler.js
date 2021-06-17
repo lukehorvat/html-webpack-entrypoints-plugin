@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 const { ufs } = require('unionfs');
-const { Volume } = require('memfs');
+const { createFsFromVolume, Volume } = require('memfs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackEntrypointsPlugin = require('..');
 
@@ -44,11 +44,9 @@ module.exports = (fixture) => {
     ],
   });
 
-  // Create a filesystem that is a union of the real disk filesystem and an in-memory volume.
-  // This is done for two reasons:
-  // 1. Webpack will emit the build to an in-memory filesystem location when running the tests.
-  // 2. Unimportant files that are needed for the tests don't have to exist on disk.
-  compiler.outputFileSystem = compiler.inputFileSystem = ufs.use(fs).use(
+  // Create an input filesystem that is a union of the real disk filesystem and an in-memory
+  // volume, so that unimportant files needed for the compilation don't have to exist on disk.
+  compiler.inputFileSystem = ufs.use(fs).use(
     Volume.fromJSON(
       {
         './one.js': '',
@@ -58,6 +56,10 @@ module.exports = (fixture) => {
       fixtureDir
     )
   );
+
+  // Create an output filesystem that is an in-memory volume, so that the compilation doesn't
+  // emit files to disk.
+  compiler.outputFileSystem = createFsFromVolume(new Volume());
 
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
