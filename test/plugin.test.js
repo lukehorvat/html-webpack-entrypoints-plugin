@@ -6,7 +6,7 @@ it('should not support automatic injection', async () => {
     expect.arrayContaining([
       {
         message: expect.stringMatching(
-          'This plugin is not intended to be used with `{ inject: true }`.'
+          'This plugin cannot be used with `{ inject: true }`.'
         ),
       },
     ])
@@ -18,7 +18,7 @@ it('should not support a single entrypoint', async () => {
     expect.arrayContaining([
       {
         message: expect.stringMatching(
-          'This plugin is not intended to be used with a single entrypoint.'
+          'This plugin cannot be used with a single entrypoint.'
         ),
       },
     ])
