@@ -3,8 +3,12 @@
   "name": "html-webpack-entrypoints-plugin",
   "version": "0.0.0",
   "main": "plugin.js",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
-    "html-webpack-plugin": "^5.3.1"
+    "html-webpack-plugin": "^5.3.1",
+    "jest": "^27.0.4"
   },
   "peerDependencies": {
     "html-webpack-plugin": ">= 5.0.0"
