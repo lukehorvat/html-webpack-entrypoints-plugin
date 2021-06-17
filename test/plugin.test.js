@@ -35,6 +35,10 @@ it('should succeed when multiple entrypoints and multiple runtime chunks are con
   await runFixture('multiple-entrypoints-and-multiple-runtime-chunks');
 });
 
+it('should succeed when multiple entrypoints and no runtime chunks are configured', async () => {
+  await runFixture('multiple-entrypoints-and-no-runtime-chunks');
+});
+
 async function runFixture(fixture) {
   const stats = await compiler(fixture);
   const webpackFs = stats.compilation.compiler.outputFileSystem;
