@@ -1,7 +1,19 @@
 {
-  "private": true,
   "name": "html-webpack-entrypoints-plugin",
   "version": "0.0.0",
+  "description": "An extension to html-webpack-plugin for grouping JS/CSS assets by entry point.",
+  "author": "Luke Horvat",
+  "license": "MIT",
+  "repository": "lukehorvat/html-webpack-entrypoints-plugin",
+  "keywords": [
+    "html-webpack-plugin",
+    "webpack",
+    "plugin",
+    "entrypoint",
+    "entrypoints",
+    "entry",
+    "entries"
+  ],
   "main": "lib/plugin.js",
   "scripts": {
     "test": "jest"
