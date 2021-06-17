@@ -2,7 +2,7 @@
   "private": true,
   "name": "html-webpack-entrypoints-plugin",
   "version": "0.0.0",
-  "main": "plugin.js",
+  "main": "lib/plugin.js",
   "scripts": {
     "test": "jest"
   },
