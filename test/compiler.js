@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const { ufs } = require('unionfs');
 const { Volume } = require('memfs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const HtmlWebpackEntrypointsPlugin = require('../..');
+const HtmlWebpackEntrypointsPlugin = require('..');
 
 module.exports = (fixture) => {
   const fixtureDir = path.join(__dirname, 'fixtures', fixture);
@@ -20,6 +20,9 @@ module.exports = (fixture) => {
     output: {
       filename: path.join('assets', '[name].js'),
     },
+    optimization: {
+      runtimeChunk: 'single',
+    },
     plugins: [
       new HtmlWebpackPlugin({
         inject: fixtureConfig.inject,
@@ -27,7 +30,7 @@ module.exports = (fixture) => {
         publicPath: 'https://example.com',
       }),
 
-      // new HtmlWebpackEntrypointsPlugin(),
+      new HtmlWebpackEntrypointsPlugin(),
     ],
   });
 
