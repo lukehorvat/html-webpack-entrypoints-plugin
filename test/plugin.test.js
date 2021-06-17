@@ -43,5 +43,9 @@ async function runFixture(fixture) {
     'utf-8'
   );
 
-  expect(actualHtml.trim()).toBe(expectedHtml.trim());
+  expect(removeWhitespace(actualHtml)).toBe(removeWhitespace(expectedHtml));
+}
+
+function removeWhitespace(s) {
+  return s.replace(/\s/g, '');
 }

@@ -1,3 +1,19 @@
-<% for (var scriptUrl of htmlWebpackPlugin.files.js) { %>
+<h1>Runtime</h1>
+<% for (var scriptUrl of htmlWebpackPlugin.files.entrypoints.__runtime.js) { %>
+<script src="<%= scriptUrl %>"></script>
+<% } %>
+
+<h1>Entrypoint #1</h1>
+<% for (var scriptUrl of htmlWebpackPlugin.files.entrypoints.one.js) { %>
+<script src="<%= scriptUrl %>"></script>
+<% } %>
+
+<h1>Entrypoint #2</h1>
+<% for (var scriptUrl of htmlWebpackPlugin.files.entrypoints.two.js) { %>
+<script src="<%= scriptUrl %>"></script>
+<% } %>
+
+<h1>Entrypoint #3</h1>
+<% for (var scriptUrl of htmlWebpackPlugin.files.entrypoints.three.js) { %>
 <script src="<%= scriptUrl %>"></script>
 <% } %>
