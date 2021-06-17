@@ -1,7 +1,7 @@
 const path = require('path');
 const compiler = require('./compiler');
 
-it('should fail when automatic injection is configured', async () => {
+it('should not support automatic injection', async () => {
   await expect(() => runFixture('inject-enabled')).rejects.toEqual(
     expect.arrayContaining([
       {
@@ -13,7 +13,7 @@ it('should fail when automatic injection is configured', async () => {
   );
 });
 
-it('should fail when only one entrypoint is configured', async () => {
+it('should not support a single entrypoint', async () => {
   await expect(() => runFixture('single-entrypoint')).rejects.toEqual(
     expect.arrayContaining([
       {
@@ -25,15 +25,15 @@ it('should fail when only one entrypoint is configured', async () => {
   );
 });
 
-it('should succeed when multiple entrypoints and a single runtime chunk are configured', async () => {
+it('should support multiple entrypoints + single runtime chunk', async () => {
   await runFixture('multiple-entrypoints-and-single-runtime-chunk');
 });
 
-it('should succeed when multiple entrypoints and multiple runtime chunks are configured', async () => {
+it('should support multiple entrypoints + multiple runtime chunks', async () => {
   await runFixture('multiple-entrypoints-and-multiple-runtime-chunks');
 });
 
-it('should succeed when multiple entrypoints and no runtime chunks are configured', async () => {
+it('should support multiple entrypoints + no runtime chunks', async () => {
   await runFixture('multiple-entrypoints-and-no-runtime-chunks');
 });
 
