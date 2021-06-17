@@ -15,8 +15,20 @@ it('should fail when automatic injection is enabled', async () => {
   );
 });
 
-it('is a test', async () => {
-  await runFixture('single-entrypoint');
+it('should fail when only one entrypoint is configured', async () => {
+  await expect(() => runFixture('single-entrypoint')).rejects.toEqual(
+    expect.arrayContaining([
+      {
+        message: expect.stringMatching(
+          'This plugin is not intended to be used with a single entrypoint.'
+        ),
+      },
+    ])
+  );
+});
+
+it('should succceed when multiple entrypoints are configured', async () => {
+  await runFixture('multiple-entrypoints');
 });
 
 async function runFixture(fixture) {

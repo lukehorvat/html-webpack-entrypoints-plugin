@@ -14,9 +14,15 @@ module.exports = (fixture) => {
   const compiler = webpack({
     mode: 'development',
     context: fixtureDir,
-    entry: {
-      app: './app.js',
-    },
+    entry: fixtureConfig.multipleEntrypoints
+      ? {
+          one: './one.js',
+          two: './two.js',
+          three: './three.js',
+        }
+      : {
+          one: './one.js',
+        },
     output: {
       filename: path.join('assets', '[name].js'),
     },
@@ -45,7 +51,9 @@ module.exports = (fixture) => {
   compiler.outputFileSystem = compiler.inputFileSystem = ufs.use(fs).use(
     Volume.fromJSON(
       {
-        './app.js': '',
+        './one.js': '',
+        './two.js': '',
+        './three.js': '',
       },
       fixtureDir
     )

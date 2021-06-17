@@ -1,3 +1,4 @@
 {
-  "inject": false
+  "inject": false,
+  "multipleEntrypoints": false
 }
