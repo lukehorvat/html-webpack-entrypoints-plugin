@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "html-webpack-entrypoints-plugin",
+  "version": "0.0.0",
+  "main": "plugin.js",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.3.1"
+  },
+  "peerDependencies": {
+    "html-webpack-plugin": ">= 5.0.0"
+  }
+}
