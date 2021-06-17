@@ -24,11 +24,15 @@ module.exports = (fixture) => {
       runtimeChunk: 'single',
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        inject: fixtureConfig.inject,
-        template: './template.ejs',
-        publicPath: 'https://example.com',
-      }),
+      new HtmlWebpackPlugin(
+        fixtureConfig.inject
+          ? {}
+          : {
+              inject: fixtureConfig.inject,
+              template: './template.ejs',
+              publicPath: 'https://example.com',
+            }
+      ),
 
       new HtmlWebpackEntrypointsPlugin(),
     ],

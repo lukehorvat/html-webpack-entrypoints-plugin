@@ -3,6 +3,18 @@ const fs = require('fs');
 const util = require('util');
 const compiler = require('./compiler');
 
+it('should fail when automatic injection is enabled', async () => {
+  await expect(() => runFixture('inject-enabled')).rejects.toEqual(
+    expect.arrayContaining([
+      {
+        message: expect.stringMatching(
+          'This plugin is not intended to be used with `{ inject: true }`.'
+        ),
+      },
+    ])
+  );
+});
+
 it('is a test', async () => {
   await runFixture('single-entrypoint');
 });
