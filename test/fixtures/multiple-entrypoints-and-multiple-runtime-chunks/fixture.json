@@ -1,0 +1,5 @@
+{
+  "inject": false,
+  "multipleEntrypoints": true,
+  "runtimeChunk": "multiple"
+}

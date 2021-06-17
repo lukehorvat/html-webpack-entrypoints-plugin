@@ -3,7 +3,7 @@ const fs = require('fs');
 const util = require('util');
 const compiler = require('./compiler');
 
-it('should fail when automatic injection is enabled', async () => {
+it('should fail when automatic injection is configured', async () => {
   await expect(() => runFixture('inject-enabled')).rejects.toEqual(
     expect.arrayContaining([
       {
@@ -29,6 +29,10 @@ it('should fail when only one entrypoint is configured', async () => {
 
 it('should succeed when multiple entrypoints and a single runtime chunk are configured', async () => {
   await runFixture('multiple-entrypoints-and-single-runtime-chunk');
+});
+
+it('should succeed when multiple entrypoints and multiple runtime chunks are configured', async () => {
+  await runFixture('multiple-entrypoints-and-multiple-runtime-chunks');
 });
 
 async function runFixture(fixture) {
