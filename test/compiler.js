@@ -5,6 +5,7 @@ const { ufs } = require('unionfs');
 const { createFsFromVolume, Volume } = require('memfs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackEntrypointsPlugin = require('..');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (fixture) => {
   const fixtureDir = path.join(__dirname, 'fixtures', fixture);
@@ -41,7 +42,19 @@ module.exports = (fixture) => {
       ),
 
       new HtmlWebpackEntrypointsPlugin(),
+
+      new MiniCssExtractPlugin({
+        filename: 'assets/[name].css',
+      }),
     ],
+    module: {
+      rules: [
+        {
+          test: /\.css$/i,
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        },
+      ],
+    },
   });
 
   // Create an input filesystem that is a union of the real disk filesystem and an in-memory
@@ -49,9 +62,12 @@ module.exports = (fixture) => {
   compiler.inputFileSystem = ufs.use(fs).use(
     Volume.fromJSON(
       {
-        './one.js': '',
-        './two.js': '',
-        './three.js': '',
+        './one.js': `require('./one.css')`,
+        './one.css': '',
+        './two.js': `require('./two.css')`,
+        './two.css': '',
+        './three.js': `require('./three.css')`,
+        './three.css': '',
       },
       fixtureDir
     )
