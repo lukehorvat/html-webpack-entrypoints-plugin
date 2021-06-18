@@ -1,4 +1,4 @@
-# html-webpack-entrypoints-plugin
+# html-webpack-entrypoints-plugin [![npm version](http://img.shields.io/npm/v/html-webpack-entrypoints-plugin.svg?style=flat-square)](https://www.npmjs.org/package/html-webpack-entrypoints-plugin) [![build status](https://img.shields.io/github/workflow/status/lukehorvat/html-webpack-entrypoints-plugin/Build?style=flat-square)](https://github.com/lukehorvat/html-webpack-entrypoints-plugin/actions/workflows/build.yml)
 
 An extension to [`html-webpack-plugin`](https://github.com/jantimon/html-webpack-plugin) that groups JS/CSS assets by entry point.
 
